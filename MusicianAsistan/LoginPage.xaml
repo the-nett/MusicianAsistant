@@ -1,0 +1,69 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicianAsistan.LoginPage"
+             Title="Login"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+
+            <!-- Icono -->
+            <Frame BackgroundColor="#1E1E1E"
+                   
+                   HeightRequest="80"
+                   WidthRequest="80"
+                   HorizontalOptions="Center">
+                <Label Text="🎵"
+                       FontSize="40"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="#B388FF"/>
+            </Frame>
+
+            <!-- Titulo -->
+            <Label Text="Band Notes"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+            <Label Text="Organiza tus partituras y ensayos"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="#B388FF"/>
+
+            <!-- Formulario -->
+            <Entry x:Name="EmailEntry"
+                   Placeholder="Email"
+                   Keyboard="Email"
+                   PlaceholderColor="#B388FF"
+                   TextColor="White"
+                   BackgroundColor="#1E1E1E"
+                   HeightRequest="50"
+                   />
+
+            <Entry x:Name="PasswordEntry"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   PlaceholderColor="#B388FF"
+                   TextColor="White"
+                   BackgroundColor="#1E1E1E"
+                   HeightRequest="50"
+                   />
+
+            <!-- Botón de Iniciar Sesión -->
+            <Button Text="Iniciar Sesión"
+                    Clicked="OnLoginClicked"
+                    BackgroundColor="#7C4DFF"
+                    TextColor="White"
+                    HeightRequest="50"
+                    />
+
+            <!-- Enlace de Registro -->
+            <Label Text="¿No tienes cuenta? "
+                   HorizontalOptions="Center"
+                   TextColor="White">
+            </Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "WebAppMusicianasistant\\WebAppMusicianasistant.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MauiApp4\\MusicianAssistantMobile.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

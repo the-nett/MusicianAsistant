@@ -1,0 +1,21 @@
+🚀 1. Sobre la búsqueda "en vivo" mientras escribes (estilo Google)
+Lo que describes es el famoso "live search" o "autocomplete".
+
+Aquí, SignalR no es necesario.
+Normalmente se hace así:
+
+Desde el front (.NET MAUI) cada vez que el usuario escribe una letra, disparas una búsqueda a tu Web API con un debounce de 300-500 ms (para no saturar de peticiones).
+
+La API devuelve resultados que se van mostrando en tiempo real.
+
+Por qué no usar SignalR aquí:
+SignalR es más útil cuando quieres que el servidor te avise de algo, pero en la búsqueda eres tú quien está pidiendo resultados al servidor.
+Así que REST está perfecto, o si quieres ir más rápido y moderno, podrías usar gRPC, pero con REST vas sobrado.
+
+➡️ Recomendación:
+
+Implementa búsqueda incremental con debounce en el cliente.
+
+La API expone un endpoint tipo /search?q=palabra.
+
+Bonus: Si quieres mejorar más adelante la experiencia de búsqueda, puedes integrar una herramienta como Algolia, ElasticSearch o incluso Postgres con full text search para que te ordene por relevancia.
