@@ -3,7 +3,7 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "WebAppMusicianasistant\\WebAppMusicianasistant.csproj",
+        "Path": "WebAppMusicianasistant\\WebApiMusicianasistant.csproj",
         "Action": "Start"
       },
       {

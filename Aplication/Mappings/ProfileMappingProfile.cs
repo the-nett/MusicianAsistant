@@ -1,4 +1,5 @@
-﻿using Application.DTO.Profile;
+﻿using Aplication.DTO.Gender;
+using Application.DTO.Profile;
 using AutoMapper;
 using Domain.Entities;
 
@@ -9,6 +10,7 @@ namespace Application.Mappings
         public ProfileMappingProfile()
         {
            CreateMap<CreateProfileDto, Domain.Entities.Profile>();
+           CreateMap<Gender, GetGenderDto>();
         }
     }
 }

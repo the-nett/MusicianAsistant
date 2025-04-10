@@ -25,9 +25,8 @@
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
             <Button
-                x:Name="CounterBtn"
+                x:Name="BtnLogin"
                 Text="Iniciar sesión" 
-                SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
             <Button

@@ -197,7 +197,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("IdGender");
 
-                    b.ToTable("Gender");
+                    b.ToTable("Genders");
 
                     b.HasData(
                         new

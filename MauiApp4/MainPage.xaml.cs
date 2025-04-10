@@ -6,7 +6,6 @@ namespace MauiApp4
     public partial class MainPage : ContentPage
     {
         private readonly AuthService _authService;
-        int count = 0;
 
         public MainPage()
         {
@@ -16,7 +15,7 @@ namespace MauiApp4
 
         private async void OnCounterClicked(object sender, EventArgs e)
         {
-            count++;
+
 
             // Intentar logear con Google
             bool success = await _authService.SignInWithGoogle();
@@ -30,7 +29,7 @@ namespace MauiApp4
                 await DisplayAlert("Alert", "error en inicio de sesion", "OK");
             }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            
         }
         private async void OnLogoutClicked(object sender, EventArgs e)
         {

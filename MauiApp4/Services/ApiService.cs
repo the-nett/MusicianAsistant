@@ -1,22 +1,23 @@
-﻿using System.Net.Http.Headers;
-using Newtonsoft.Json; // <- Aquí
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 public class ApiService
 {
     private readonly HttpClient _httpClient;
+    private const string BaseUrl = "https://36ck5wvh-7014.use2.devtunnels.ms/";
 
     public ApiService()
     {
-        _httpClient = new HttpClient();
-        _httpClient.BaseAddress = new Uri("https://gnl4c5r6-7014.use2.devtunnels.ms/"); // Tu URL base de la API
+        _httpClient = new HttpClient
+        {
+            BaseAddress = new Uri(BaseUrl)
+        };
     }
 
     public async Task<T> GetAsync<T>(string endpoint, string accessToken)
     {
         try
         {
-            // Agregar token de autorización
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             var response = await _httpClient.GetAsync(endpoint);
@@ -29,12 +30,10 @@ public class ApiService
 
             var json = await response.Content.ReadAsStringAsync();
 
-            // Aquí usamos Newtonsoft.Json
             return JsonConvert.DeserializeObject<T>(json);
         }
         catch (Exception ex)
         {
-            // Manejo de errores
             Console.WriteLine($"Error en GetAsync: {ex.Message}");
             throw;
         }

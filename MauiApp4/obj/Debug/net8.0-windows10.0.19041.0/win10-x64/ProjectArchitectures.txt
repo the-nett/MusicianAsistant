@@ -1,1 +1,1 @@
-C:\Users\User\source\repos\MusicianAsistantMobile\MauiApp4\MusicianAssistantMobile.csproj;x64
+C:\Users\User\source\repos\MusicianAsistant\MauiApp4\MusicianAssistantMobile.csproj;x64

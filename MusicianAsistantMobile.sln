@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMusicianasistant", "WebAppMusicianasistant\WebAppMusicianasistant.csproj", "{79028B12-ADB1-4C74-856A-B6286E1444EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiMusicianasistant", "WebAppMusicianasistant\WebApiMusicianasistant.csproj", "{79028B12-ADB1-4C74-856A-B6286E1444EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infraestructure\Infrastructure.csproj", "{31E6DEC0-E0D5-47C7-B1E4-D1897436903E}"
 EndProject

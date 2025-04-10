@@ -3,14 +3,10 @@ using Aplication.Services.Interface;
 using Application.Mappings;
 using Infraestructure.Data;
 using Infraestructure.Repositories;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 using System.Text;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // ============================
@@ -33,6 +29,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Inyección de dependencias
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<IGenderRepository, GenderRepository>();
+builder.Services.AddScoped<IGenderService, GenderService>();
+
 
 // Configuración de CORS (opcional para desarrollo)
 builder.Services.AddCors(options =>
@@ -48,11 +47,11 @@ builder.Services.AddCors(options =>
 // Configuración de controladores con política global de autorización
 builder.Services.AddControllers(options =>
 {
-    var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
+    //var policy = new AuthorizationPolicyBuilder()
+    //    .RequireAuthenticatedUser()
+    //    .Build();
 
-    options.Filters.Add(new AuthorizeFilter(policy));
+    //options.Filters.Add(new AuthorizeFilter(policy));
 });
 builder.Services.AddAutoMapper(typeof(ProfileMappingProfile).Assembly);
 

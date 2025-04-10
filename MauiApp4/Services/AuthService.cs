@@ -49,8 +49,10 @@ public class AuthService
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Usuario no encontrado", "No se encontró un perfil asociado.", "OK");
+                // Redirect to registration page instead of showing alert
+                await Application.Current.MainPage.Navigation.PushAsync(new MauiApp4.Views.RegisterPage());
                 return false;
+
             }
 
         }

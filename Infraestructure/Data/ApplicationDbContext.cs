@@ -14,6 +14,7 @@ namespace Infraestructure.Data
         //public DbSet<UserRole> UsuariosRoles { get; set; }
         //public DbSet<RolePermission> RolesPermissions { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Gender> Genders { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Band> Bands { get; set; }
         public DbSet<UserBand> UserBands { get; set; }

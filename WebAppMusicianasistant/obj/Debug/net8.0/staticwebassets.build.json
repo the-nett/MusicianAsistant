@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "mufd1CmbtR7E1ZeKcB+rxsxie6VAA+GnOhka3Bye/z4=",
-  "Source": "WebAppMusicianasistant",
-  "BasePath": "_content/WebAppMusicianasistant",
+  "Hash": "2rwUb1cLCOi7+ywnkfMjXwdFNAbil1r9RIC4F/5y0+A=",
+  "Source": "WebApiMusicianasistant",
+  "BasePath": "_content/WebApiMusicianasistant",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

@@ -8,5 +8,15 @@
                Text="Bienvenido"
                FontSize="24"
                HorizontalOptions="Center" />
+
+        <Button Text="Traer Generos"
+            BackgroundColor="Gray"
+            TextColor="White"
+            FontSize="18"
+            CornerRadius="10"
+            HeightRequest="50"
+            WidthRequest="200"
+            Margin="0,30,0,0"
+            Clicked="OntraerGenerosClicked"/>
     </VerticalStackLayout>
 </ContentPage>
