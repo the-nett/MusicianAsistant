@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp4.Views.GetStarted"
+             BackgroundColor="Black">
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <!-- Título -->
+        <Label Text="MusicianHelper"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center" />
+
+        <!-- Subtítulo -->
+        <Label Text="Centralize and simplify song management for musicians"
+               FontSize="16"
+               TextColor="White"
+               HorizontalOptions="Center"
+               Margin="0,10,0,20"
+               HorizontalTextAlignment="Center"/>
+
+        <!-- Imagen -->
+        <Image Source="get_started_image.jpg"
+               HeightRequest="200"
+               WidthRequest="200"
+               HorizontalOptions="Center" />
+
+        <!-- Botón -->
+        <Button Text="Get Started"
+                BackgroundColor="Gray"
+                TextColor="White"
+                FontSize="18"
+                CornerRadius="10"
+                HeightRequest="50"
+                WidthRequest="200"
+                Margin="0,30,0,0"
+                Clicked="OnGetStartedClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
