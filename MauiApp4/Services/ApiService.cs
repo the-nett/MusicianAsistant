@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 public class ApiService
 {
     private readonly HttpClient _httpClient;
-    private const string BaseUrl = "https://72fgn30z-7014.use2.devtunnels.ms/";
+    private const string BaseUrl = "https://qzjcd27q-7014.use2.devtunnels.ms/";
 
     public ApiService()
     {

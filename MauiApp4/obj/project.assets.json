@@ -37431,9 +37431,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\MauiApp4\\MusicianAssistantMobile.csproj",
-      "projectName": "MusicianAssistantMobile",
-      "projectPath": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\MauiApp4\\MusicianAssistantMobile.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\MauiApp4\\mauiapp4.csproj",
+      "projectName": "mauiapp4",
+      "projectPath": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\MauiApp4\\mauiapp4.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\MauiApp4\\obj\\",
       "projectStyle": "PackageReference",

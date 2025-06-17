@@ -11,7 +11,7 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <permission android:name="com.miapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature" />
   <uses-permission android:name="com.miapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-  <application android:name="crc640e003e14538a05ab.MainApplication" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/appicon" android:label="MauiApp4" android:supportsRtl="true">
+  <application android:name="crc6466e59c623f1db136.MainApplication" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/appicon" android:label="MauiApp4" android:supportsRtl="true">
     <!--
         <activity android:name=".WebAuthenticationCallbackActivity" android:exported="true" android:noHistory="true" android:launchMode="singleTop">
 			<intent-filter>
@@ -22,13 +22,13 @@
 			</intent-filter>
 		</activity>
         -->
-    <activity android:name="crc640e003e14538a05ab.MainActivity" android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:exported="true" android:launchMode="singleTop" android:theme="@style/Maui.SplashTheme">
+    <activity android:name="crc6466e59c623f1db136.MainActivity" android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:exported="true" android:launchMode="singleTop" android:theme="@style/Maui.SplashTheme">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name="crc640e003e14538a05ab.WebAuthenticationCallbackActivity" android:exported="true" android:launchMode="singleTop" android:noHistory="true">
+    <activity android:name="crc6466e59c623f1db136.WebAuthenticationCallbackActivity" android:exported="true" android:launchMode="singleTop" android:noHistory="true">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />

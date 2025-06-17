@@ -7,7 +7,7 @@
         "Action": "Start"
       },
       {
-        "Path": "MauiApp4\\MusicianAssistantMobile.csproj",
+        "Path": "MauiApp4\\mauiapp4.csproj",
         "Action": "Start"
       }
     ]

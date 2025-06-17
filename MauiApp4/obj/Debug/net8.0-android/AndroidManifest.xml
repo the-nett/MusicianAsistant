@@ -9,7 +9,7 @@
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
-  <application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:name="crc640e003e14538a05ab.MainApplication" android:label="MauiApp4" android:debuggable="true" android:extractNativeLibs="true">
+  <application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:name="crc6466e59c623f1db136.MainApplication" android:label="MauiApp4" android:debuggable="true" android:extractNativeLibs="true">
     <!--<activity android:name=".WebAuthenticationCallbackActivity" android:exported="true" android:noHistory="true" android:launchMode="singleTop">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
@@ -18,13 +18,13 @@
 				<data android:scheme="com.tuapp" />
 			</intent-filter>
 		</activity>-->
-    <activity android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:launchMode="singleTop" android:theme="@style/Maui.SplashTheme" android:name="crc640e003e14538a05ab.MainActivity" android:exported="true">
+    <activity android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:launchMode="singleTop" android:theme="@style/Maui.SplashTheme" android:name="crc6466e59c623f1db136.MainActivity" android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:exported="true" android:launchMode="singleTop" android:noHistory="true" android:name="crc640e003e14538a05ab.WebAuthenticationCallbackActivity">
+    <activity android:exported="true" android:launchMode="singleTop" android:noHistory="true" android:name="crc6466e59c623f1db136.WebAuthenticationCallbackActivity">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />

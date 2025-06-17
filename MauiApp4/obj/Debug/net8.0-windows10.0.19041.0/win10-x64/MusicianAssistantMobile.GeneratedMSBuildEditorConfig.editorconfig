@@ -58,6 +58,18 @@ build_metadata.AdditionalFiles.ManifestResourceName = MauiApp4.Views.GetStarted.
 build_metadata.AdditionalFiles.TargetPath = Views\GetStarted.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\GetStarted.xaml
 
+[C:/Users/User/source/repos/MusicianAsistant/MauiApp4/Views/Pages/Flyout/FlyOutMenuPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp4.Views.Pages.Flyout.FlyOutMenuPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Pages\Flyout\FlyOutMenuPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Pages\Flyout\FlyOutMenuPage.xaml
+
+[C:/Users/User/source/repos/MusicianAsistant/MauiApp4/Views/Pages/Flyout/FlyOutPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp4.Views.Pages.Flyout.FlyOutPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Pages\Flyout\FlyOutPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Pages\Flyout\FlyOutPage.xaml
+
 [C:/Users/User/source/repos/MusicianAsistant/MauiApp4/Views/RegisterPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp4.Views.RegisterPage.xaml

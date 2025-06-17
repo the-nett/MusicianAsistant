@@ -1,8 +1,8 @@
 package mono;
 public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
-		/* We need to ensure that "MusicianAssistantMobile.dll" comes first in this list. */
-		"MusicianAssistantMobile.dll",
+		/* We need to ensure that "mauiapp4.dll" comes first in this list. */
+		"mauiapp4.dll",
 		"GoogleGson.dll",
 		"Microsoft.EntityFrameworkCore.dll",
 		"Microsoft.EntityFrameworkCore.Abstractions.dll",

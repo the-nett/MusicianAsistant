@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MusicianAssistantMobile")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+15578244aa30745cf6a9d9026ed89a9032dade03")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+e6c9197f796ba753aa7922cb6f0791e2236e771d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MusicianAssistantMobile")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MusicianAssistantMobile")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

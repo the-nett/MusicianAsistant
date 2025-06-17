@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("MauiApp4")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("mauiapp4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+2600ad212ef6d3eb9b47414aeffeaa0ff7c61ff8")]
-[assembly: System.Reflection.AssemblyProductAttribute("MauiApp4")]
-[assembly: System.Reflection.AssemblyTitleAttribute("MauiApp4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+e6c9197f796ba753aa7922cb6f0791e2236e771d")]
+[assembly: System.Reflection.AssemblyProductAttribute("mauiapp4")]
+[assembly: System.Reflection.AssemblyTitleAttribute("mauiapp4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("iOS18.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("iOS11.0")]

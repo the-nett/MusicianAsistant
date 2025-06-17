@@ -8,11 +8,9 @@ namespace Domain.Entities
     {
         [Key]
         public int Id { get; set; } 
+        public required string Role { get; set; } = string.Empty;
 
         public required string UserUniqueId { get; set; }
-
-        public Guid? StatusInvitationId { get; set; }  // Cambiado a Guid
-        //public StatusInvitation StatusInvitation { get; set; } = null!;  // Asumiendo que tienes esta entidad
 
         public required string FullName { get; set; }
 
@@ -21,14 +19,8 @@ namespace Domain.Entities
 
         public required DateOnly BirthDate { get; set; }
 
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public bool IsActive { get; set; } = true;
-
-        public ICollection<UserRol> UsersRoles { get; set; } = new List<UserRol>();
-        public ICollection<UserBand> UsersBand { get; set; } = new List<UserBand>();
-        public ICollection<BandInvitation> BandInvitations { get; set; } = new List<BandInvitation>();
-        public ICollection<Band> Bands { get; set; } = new List<Band>();
         public virtual ICollection<UserInstrument> UserInstruments { get; set; } = new List<UserInstrument>();
         public virtual ICollection<Song> Songs { get; set; } = new List<Song>();
         public virtual ICollection<SongVersion> SongVersions { get; set; } = new List<SongVersion>();

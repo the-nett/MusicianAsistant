@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplication", "Aplication\Aplication.csproj", "{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicianAssistantMobile", "MauiApp4\MusicianAssistantMobile.csproj", "{721890E7-E776-041A-8220-503EBD0CC164}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mauiapp4", "MauiApp4\mauiapp4.csproj", "{721890E7-E776-041A-8220-503EBD0CC164}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -77,110 +77,35 @@ namespace Infrastructure.Migrations
                     b.ToTable("AuditLogs");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Band", b =>
+            modelBuilder.Entity("Domain.Entities.ErrorLogs", b =>
                 {
-                    b.Property<int>("BandId")
+                    b.Property<int>("IdError")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BandId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdError"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<string>("context_info")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatedBy")
+                    b.Property<int>("id_user")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("message")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BandId");
-
-                    b.HasIndex("CreatedBy");
-
-                    b.ToTable("Bands");
-                });
-
-            modelBuilder.Entity("Domain.Entities.BandInvitation", b =>
-                {
-                    b.Property<int>("InvitationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvitationId"));
-
-                    b.Property<DateTime?>("AcceptedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("BandId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeliveryMethod")
+                    b.Property<string>("stack_trace")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InvitedBy")
-                        .HasColumnType("int");
+                    b.HasKey("IdError");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StatusInvitationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Target")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("InvitationId");
-
-                    b.HasIndex("InvitedBy");
-
-                    b.HasIndex("StatusInvitationId");
-
-                    b.ToTable("BandInvitations");
-                });
-
-            modelBuilder.Entity("Domain.Entities.BandRole", b =>
-                {
-                    b.Property<int>("BandRoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BandRoleId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BandRoleId");
-
-                    b.ToTable("BandRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            BandRoleId = 1,
-                            Name = "Director"
-                        },
-                        new
-                        {
-                            BandRoleId = 2,
-                            Name = "Musico"
-                        },
-                        new
-                        {
-                            BandRoleId = 3,
-                            Name = "Técnico"
-                        });
+                    b.ToTable("ErrorLogs");
                 });
 
             modelBuilder.Entity("Domain.Entities.Gender", b =>
@@ -256,52 +181,6 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Permission", b =>
-                {
-                    b.Property<int>("PermissionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PermissionId"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PermissionId");
-
-                    b.ToTable("Permissions");
-
-                    b.HasData(
-                        new
-                        {
-                            PermissionId = 1,
-                            Description = "Permite crear recursos",
-                            Name = "Crear"
-                        },
-                        new
-                        {
-                            PermissionId = 2,
-                            Description = "Permite leer recursos",
-                            Name = "Leer"
-                        },
-                        new
-                        {
-                            PermissionId = 3,
-                            Description = "Permite actualizar recursos",
-                            Name = "Actualizar"
-                        },
-                        new
-                        {
-                            PermissionId = 4,
-                            Description = "Permite eliminar recursos",
-                            Name = "Eliminar"
-                        });
-                });
-
             modelBuilder.Entity("Domain.Entities.Profile", b =>
                 {
                     b.Property<int>("Id")
@@ -326,8 +205,9 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("StatusInvitationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserUniqueId")
                         .IsRequired()
@@ -348,6 +228,7 @@ namespace Infrastructure.Migrations
                             FullName = "Juan Pérez",
                             GenderId = 1,
                             IsActive = true,
+                            Role = "Músico",
                             UserUniqueId = "user-unique-001"
                         },
                         new
@@ -358,6 +239,7 @@ namespace Infrastructure.Migrations
                             FullName = "María López",
                             GenderId = 2,
                             IsActive = true,
+                            Role = "Músico",
                             UserUniqueId = "user-unique-002"
                         },
                         new
@@ -368,99 +250,8 @@ namespace Infrastructure.Migrations
                             FullName = "Carlos Martínez",
                             GenderId = 1,
                             IsActive = true,
+                            Role = "Músico",
                             UserUniqueId = "user-unique-003"
-                        });
-                });
-
-            modelBuilder.Entity("Domain.Entities.Role", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RoleId");
-
-                    b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1,
-                            Description = "Administrador del sistema",
-                            Name = "Administrador"
-                        },
-                        new
-                        {
-                            RoleId = 2,
-                            Description = "Usuario estándar",
-                            Name = "UsuarioEstandar"
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            Description = "Modera contenido",
-                            Name = "Moderator"
-                        });
-                });
-
-            modelBuilder.Entity("Domain.Entities.RolePermission", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoleId", "PermissionId");
-
-                    b.HasIndex("PermissionId");
-
-                    b.ToTable("RolePermission");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1,
-                            PermissionId = 1
-                        },
-                        new
-                        {
-                            RoleId = 1,
-                            PermissionId = 2
-                        },
-                        new
-                        {
-                            RoleId = 1,
-                            PermissionId = 3
-                        },
-                        new
-                        {
-                            RoleId = 1,
-                            PermissionId = 4
-                        },
-                        new
-                        {
-                            RoleId = 2,
-                            PermissionId = 2
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            PermissionId = 2
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            PermissionId = 3
                         });
                 });
 
@@ -509,9 +300,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BandId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Compas")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -522,9 +310,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsShared")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Rhythm")
                         .IsRequired()
@@ -533,17 +320,14 @@ namespace Infrastructure.Migrations
                     b.Property<int>("SongId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Tempo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Tempo")
+                        .HasColumnType("int");
 
                     b.Property<string>("VersionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VersionId");
-
-                    b.HasIndex("BandId");
 
                     b.HasIndex("CreatedBy");
 
@@ -576,6 +360,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("InstrumentId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsShared")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UploadedBy")
                         .HasColumnType("int");
@@ -612,6 +399,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("InstrumentId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsShared")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UploadedBy")
                         .HasColumnType("int");
@@ -661,6 +451,9 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsShared")
+                        .HasColumnType("bit");
+
                     b.Property<int>("UploadedBy")
                         .HasColumnType("int");
 
@@ -675,87 +468,6 @@ namespace Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("SongVersionPdfs");
-                });
-
-            modelBuilder.Entity("Domain.Entities.StatusInvitation", b =>
-                {
-                    b.Property<int>("StatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("StatusId");
-
-                    b.ToTable("Statuses");
-                });
-
-            modelBuilder.Entity("Domain.Entities.UserBand", b =>
-                {
-                    b.Property<int>("UserBandId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserBandId"));
-
-                    b.Property<int>("BandId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BandRoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserBandId");
-
-                    b.HasIndex("BandId");
-
-                    b.HasIndex("BandRoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserBands");
-                });
-
-            modelBuilder.Entity("Domain.Entities.UserRol", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRol");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            RoleId = 3
-                        });
                 });
 
             modelBuilder.Entity("UserInstrument", b =>
@@ -784,36 +496,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("ActionType");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Band", b =>
-                {
-                    b.HasOne("Domain.Entities.Profile", "Creator")
-                        .WithMany("Bands")
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Creator");
-                });
-
-            modelBuilder.Entity("Domain.Entities.BandInvitation", b =>
-                {
-                    b.HasOne("Domain.Entities.Profile", "InvitedByProfile")
-                        .WithMany("BandInvitations")
-                        .HasForeignKey("InvitedBy")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.StatusInvitation", "Status")
-                        .WithMany("BandInvitations")
-                        .HasForeignKey("StatusInvitationId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("InvitedByProfile");
-
-                    b.Navigation("Status");
-                });
-
             modelBuilder.Entity("Domain.Entities.Profile", b =>
                 {
                     b.HasOne("Domain.Entities.Gender", "gender")
@@ -823,25 +505,6 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("gender");
-                });
-
-            modelBuilder.Entity("Domain.Entities.RolePermission", b =>
-                {
-                    b.HasOne("Domain.Entities.Permission", "Permission")
-                        .WithMany("RolesPermissions")
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Role", "Role")
-                        .WithMany("RolesPermissions")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Permission");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Domain.Entities.Song", b =>
@@ -857,10 +520,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.SongVersion", b =>
                 {
-                    b.HasOne("Domain.Entities.Band", "Band")
-                        .WithMany("Songs")
-                        .HasForeignKey("BandId");
-
                     b.HasOne("Domain.Entities.Profile", "Creator")
                         .WithMany("SongVersions")
                         .HasForeignKey("CreatedBy")
@@ -872,8 +531,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("SongId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Band");
 
                     b.Navigation("Creator");
 
@@ -953,52 +610,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Version");
                 });
 
-            modelBuilder.Entity("Domain.Entities.UserBand", b =>
-                {
-                    b.HasOne("Domain.Entities.Band", "Band")
-                        .WithMany("UsersBand")
-                        .HasForeignKey("BandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.BandRole", "BandRole")
-                        .WithMany("UsersBand")
-                        .HasForeignKey("BandRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Profile", "User")
-                        .WithMany("UsersBand")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Band");
-
-                    b.Navigation("BandRole");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Entities.UserRol", b =>
-                {
-                    b.HasOne("Domain.Entities.Role", "Role")
-                        .WithMany("UsersRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Profile", "User")
-                        .WithMany("UsersRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("UserInstrument", b =>
                 {
                     b.HasOne("Domain.Entities.Instrument", "Instrument")
@@ -1018,18 +629,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Band", b =>
-                {
-                    b.Navigation("Songs");
-
-                    b.Navigation("UsersBand");
-                });
-
-            modelBuilder.Entity("Domain.Entities.BandRole", b =>
-                {
-                    b.Navigation("UsersBand");
-                });
-
             modelBuilder.Entity("Domain.Entities.Gender", b =>
                 {
                     b.Navigation("Profiles");
@@ -1046,17 +645,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("UserInstruments");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Permission", b =>
-                {
-                    b.Navigation("RolesPermissions");
-                });
-
             modelBuilder.Entity("Domain.Entities.Profile", b =>
                 {
-                    b.Navigation("BandInvitations");
-
-                    b.Navigation("Bands");
-
                     b.Navigation("SongVersionInstrumentPdfs");
 
                     b.Navigation("SongVersionInstrumentVideos");
@@ -1068,17 +658,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Songs");
 
                     b.Navigation("UserInstruments");
-
-                    b.Navigation("UsersBand");
-
-                    b.Navigation("UsersRoles");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Role", b =>
-                {
-                    b.Navigation("RolesPermissions");
-
-                    b.Navigation("UsersRoles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Song", b =>
@@ -1095,11 +674,6 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("SongVersionn")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.StatusInvitation", b =>
-                {
-                    b.Navigation("BandInvitations");
                 });
 #pragma warning restore 612, 618
         }
