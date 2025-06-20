@@ -62,7 +62,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Profile"
+                    "$ref": "#/components/schemas/AdminProfileViewDto"
                   }
                 }
               },
@@ -70,7 +70,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Profile"
+                    "$ref": "#/components/schemas/AdminProfileViewDto"
                   }
                 }
               },
@@ -78,7 +78,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Profile"
+                    "$ref": "#/components/schemas/AdminProfileViewDto"
                   }
                 }
               }
@@ -194,12 +194,11 @@
         }
       }
     },
-    "/WeatherForecast": {
+    "/api/Profiles/pending": {
       "get": {
         "tags": [
-          "WeatherForecast"
+          "Profiles"
         ],
-        "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
             "description": "OK",
@@ -208,7 +207,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/AdminProfileViewDto"
                   }
                 }
               },
@@ -216,7 +215,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/AdminProfileViewDto"
                   }
                 }
               },
@@ -224,7 +223,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/AdminProfileViewDto"
                   }
                 }
               }
@@ -236,130 +235,34 @@
   },
   "components": {
     "schemas": {
-      "Band": {
-        "required": [
-          "createdAt",
-          "createdBy",
-          "name"
-        ],
+      "AdminProfileViewDto": {
         "type": "object",
         "properties": {
-          "bandId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "name": {
+          "fullName": {
             "type": "string",
             "nullable": true
           },
-          "createdBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "creator": {
-            "$ref": "#/components/schemas/Profile"
+          "birthDate": {
+            "type": "string",
+            "format": "date"
           },
           "createdAt": {
             "type": "string",
             "format": "date-time"
           },
-          "usersBand": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserBand"
-            },
-            "nullable": true
+          "isActive": {
+            "type": "boolean"
           },
-          "songs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongVersion"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "BandInvitation": {
-        "required": [
-          "bandId",
-          "deliveryMethod",
-          "invitedBy",
-          "message",
-          "statusInvitationId",
-          "target"
-        ],
-        "type": "object",
-        "properties": {
-          "invitationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "bandId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "target": {
+          "role": {
             "type": "string",
             "nullable": true
           },
-          "deliveryMethod": {
+          "gender": {
             "type": "string",
-            "nullable": true
-          },
-          "statusInvitationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "$ref": "#/components/schemas/StatusInvitation"
-          },
-          "invitedBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "invitedByProfile": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "token": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "acceptedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "BandRole": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "bandRoleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "usersBand": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserBand"
-            },
             "nullable": true
           }
         },
@@ -370,14 +273,10 @@
           "birthDate",
           "fullName",
           "genderId",
-          "statusInvitationId"
+          "roleId"
         ],
         "type": "object",
         "properties": {
-          "statusInvitationId": {
-            "type": "string",
-            "format": "uuid"
-          },
           "fullName": {
             "minLength": 1,
             "type": "string"
@@ -389,30 +288,10 @@
           "birthDate": {
             "type": "string",
             "format": "date"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Gender": {
-        "required": [
-          "genderName"
-        ],
-        "type": "object",
-        "properties": {
-          "idGender": {
+          },
+          "roleId": {
             "type": "integer",
             "format": "int32"
-          },
-          "genderName": {
-            "type": "string",
-            "nullable": true
-          },
-          "profiles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Profile"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -425,61 +304,6 @@
         "properties": {
           "genderName": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Instrument": {
-        "type": "object",
-        "properties": {
-          "instrumentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nameInstrument": {
-            "type": "string",
-            "nullable": true
-          },
-          "userInstruments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserInstrument"
-            },
-            "nullable": true
-          },
-          "songVersionInstrumentPdf": {
-            "$ref": "#/components/schemas/SongVersionInstrumentPdf"
-          },
-          "songVersionInstrumentVideos": {
-            "$ref": "#/components/schemas/SongVersionInstrumentVideo"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Permission": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "permissionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "rolesPermissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RolePermission"
-            },
             "nullable": true
           }
         },
@@ -511,589 +335,6 @@
           }
         },
         "additionalProperties": { }
-      },
-      "Profile": {
-        "required": [
-          "birthDate",
-          "fullName",
-          "userUniqueId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userUniqueId": {
-            "type": "string",
-            "nullable": true
-          },
-          "statusInvitationId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "genderId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "usersRoles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRol"
-            },
-            "nullable": true
-          },
-          "usersBand": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserBand"
-            },
-            "nullable": true
-          },
-          "bandInvitations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BandInvitation"
-            },
-            "nullable": true
-          },
-          "bands": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Band"
-            },
-            "nullable": true
-          },
-          "userInstruments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserInstrument"
-            },
-            "nullable": true
-          },
-          "songs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Song"
-            },
-            "nullable": true
-          },
-          "songVersions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongVersion"
-            },
-            "nullable": true
-          },
-          "songVersionPdfs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongVersionPdf"
-            },
-            "nullable": true
-          },
-          "songVersionInstrumentPdfs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongVersionInstrumentPdf"
-            },
-            "nullable": true
-          },
-          "songVersionInstrumentVideos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongVersionInstrumentVideo"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Role": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "roleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "usersRoles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRol"
-            },
-            "nullable": true
-          },
-          "rolesPermissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RolePermission"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RolePermission": {
-        "type": "object",
-        "properties": {
-          "permissionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "permission": {
-            "$ref": "#/components/schemas/Permission"
-          },
-          "roleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "role": {
-            "$ref": "#/components/schemas/Role"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Song": {
-        "required": [
-          "createdBy",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "songId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "creator": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "versions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongVersion"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SongVersion": {
-        "required": [
-          "album",
-          "albumCoverPath",
-          "author",
-          "compas",
-          "createdBy",
-          "genre",
-          "rhythm",
-          "songId",
-          "tempo",
-          "versionName"
-        ],
-        "type": "object",
-        "properties": {
-          "versionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "versionName": {
-            "type": "string",
-            "nullable": true
-          },
-          "songId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "song": {
-            "$ref": "#/components/schemas/Song"
-          },
-          "album": {
-            "type": "string",
-            "nullable": true
-          },
-          "albumCoverPath": {
-            "type": "string",
-            "nullable": true
-          },
-          "author": {
-            "type": "string",
-            "nullable": true
-          },
-          "genre": {
-            "type": "string",
-            "nullable": true
-          },
-          "compas": {
-            "type": "string",
-            "nullable": true
-          },
-          "tempo": {
-            "type": "string",
-            "nullable": true
-          },
-          "rhythm": {
-            "type": "string",
-            "nullable": true
-          },
-          "bandId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "band": {
-            "$ref": "#/components/schemas/Band"
-          },
-          "createdBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "creator": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "songVersionn": {
-            "$ref": "#/components/schemas/SongVersionPdf"
-          },
-          "songVersionInstrumentPdf": {
-            "$ref": "#/components/schemas/SongVersionInstrumentPdf"
-          },
-          "songVersionInstrumentVideos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongVersionInstrumentVideo"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SongVersionInstrumentPdf": {
-        "required": [
-          "fileName",
-          "filePath",
-          "instrumentId",
-          "versionId"
-        ],
-        "type": "object",
-        "properties": {
-          "pdfId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "versionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "version": {
-            "$ref": "#/components/schemas/SongVersion"
-          },
-          "instrumentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "instrument": {
-            "$ref": "#/components/schemas/Instrument"
-          },
-          "uploadedBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "uploader": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "filePath": {
-            "type": "string",
-            "nullable": true
-          },
-          "fileName": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SongVersionInstrumentVideo": {
-        "required": [
-          "instrumentId",
-          "uploadedBy",
-          "versionId",
-          "videoName",
-          "videoUrl"
-        ],
-        "type": "object",
-        "properties": {
-          "videoId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "videoName": {
-            "type": "string",
-            "nullable": true
-          },
-          "versionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "version": {
-            "$ref": "#/components/schemas/SongVersion"
-          },
-          "instrumentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "instrument": {
-            "$ref": "#/components/schemas/Instrument"
-          },
-          "uploadedBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "uploader": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "videoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SongVersionPdf": {
-        "required": [
-          "uploadedBy",
-          "versionId"
-        ],
-        "type": "object",
-        "properties": {
-          "pdfId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "versionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "version": {
-            "$ref": "#/components/schemas/SongVersion"
-          },
-          "uploadedBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "uploader": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "filePath": {
-            "type": "string",
-            "nullable": true
-          },
-          "fileName": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "StatusInvitation": {
-        "required": [
-          "description",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "statusId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "bandInvitations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BandInvitation"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserBand": {
-        "required": [
-          "bandId",
-          "bandRoleId",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "userBandId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "user": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "bandId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "band": {
-            "$ref": "#/components/schemas/Band"
-          },
-          "bandRoleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "bandRole": {
-            "$ref": "#/components/schemas/BandRole"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserInstrument": {
-        "required": [
-          "instrumentId",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "instrumentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "user": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "instrument": {
-            "$ref": "#/components/schemas/Instrument"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserRol": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "user": {
-            "$ref": "#/components/schemas/Profile"
-          },
-          "roleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "role": {
-            "$ref": "#/components/schemas/Role"
-          }
-        },
-        "additionalProperties": false
-      },
-      "WeatherForecast": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       }
     },
     "securitySchemes": {

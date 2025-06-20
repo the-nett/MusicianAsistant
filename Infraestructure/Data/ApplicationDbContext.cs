@@ -20,6 +20,9 @@ namespace Infraestructure.Data
         public DbSet<SongVersionInstrumentVideo> SongVersionInstrumentVideos { get; set; }
         public DbSet<ActionType> ActionTypes { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
+        public DbSet<SongVersionInstrumentText> SongVersionInstrumentTexts { get; set; }
+        public DbSet<Role> Roles { get; set; }
+
 
         public DbSet<ErrorLogs> ErrorLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,6 +39,11 @@ namespace Infraestructure.Data
                         v => v.ToDateTime(TimeOnly.MinValue), // Convert to DateTime to store
                         v => DateOnly.FromDateTime(v));       // Convert back to DateOnly when reading
             });
+            modelBuilder.Entity<Profile>()
+                .HasOne(p => p.Role)
+                .WithMany(r => r.Profiles)
+                .HasForeignKey(p => p.RoleId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<UserInstrument>()
                 .HasKey(ui => new { ui.UserId, ui.InstrumentId });
@@ -82,15 +90,14 @@ namespace Infraestructure.Data
             //-------------------------------------------------
             modelBuilder.Entity<SongVersionInstrumentPdf>()
                 .HasOne(b => b.Version)
-                .WithOne(bp => bp.SongVersionInstrumentPdf)
-                .HasForeignKey<SongVersionInstrumentPdf>(b => b.VersionId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany(bp => bp.SongVersionInstrumentPdfs)
+                .HasForeignKey(b => b.VersionId);
 
             modelBuilder.Entity<SongVersionInstrumentPdf>()
                 .HasOne(b => b.Instrument)
-                .WithOne(bp => bp.SongVersionInstrumentPdf)
-                .HasForeignKey<SongVersionInstrumentPdf>(b => b.InstrumentId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany(bp => bp.SongVersionInstrumentPdfs)
+                .HasForeignKey(b => b.InstrumentId);
+
 
             modelBuilder.Entity<SongVersionInstrumentPdf>()
                 .HasOne(b => b.Uploader)
@@ -105,16 +112,35 @@ namespace Infraestructure.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<SongVersionInstrumentVideo>()
-                .HasOne(b => b.Instrument)
-                .WithOne(bp => bp.SongVersionInstrumentVideos)
-                .HasForeignKey<SongVersionInstrumentVideo>(b => b.InstrumentId)
-                .OnDelete(DeleteBehavior.Restrict);
+                 .HasOne(b => b.Instrument)
+                 .WithMany(bp => bp.SongVersionInstrumentVideos)
+                 .HasForeignKey(b => b.InstrumentId);
+
 
             modelBuilder.Entity<SongVersionInstrumentVideo>()
                 .HasOne(b => b.Uploader)
                 .WithMany(bp => bp.SongVersionInstrumentVideos)
                 .HasForeignKey(b => b.UploadedBy)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SongVersionInstrumentText>()
+                .HasOne(t => t.Version)
+                .WithMany(v => v.SongVersionInstrumentTexts)
+                .HasForeignKey(t => t.VersionId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SongVersionInstrumentText>()
+                .HasOne(t => t.Instrument)
+                .WithMany(i => i.SongVersionInstrumentTexts)
+                .HasForeignKey(t => t.InstrumentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SongVersionInstrumentText>()
+                .HasOne(t => t.Uploader)
+                .WithMany(p => p.SongVersionInstrumentTexts)
+                .HasForeignKey(t => t.UploadedBy)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             // ---------- Seed Data ----------
             //Instruments
@@ -130,18 +156,23 @@ namespace Infraestructure.Data
                 new Gender { IdGender = 2, GenderName = "Femenino" },
                 new Gender { IdGender = 3, GenderName = "Otro" }
             );
+            //Roles
+            modelBuilder.Entity<Role>().HasData(
+                new Role { RoleId = 1, RoleName = "Músico" },
+                new Role { RoleId = 2, RoleName = "Administrador" }
+            );
 
             modelBuilder.Entity<Profile>().HasData(
                 new Profile
                 {
                     Id = 1,
                     UserUniqueId = "user-unique-001",
-                    FullName = "Juan Pérez",
+                    FullName = "Ricardo Rodriguez",
                     GenderId = 1,
                     BirthDate = new DateOnly(1990, 05, 20),
                     CreatedAt = new DateTime(2025, 04, 07, 12, 0, 0, DateTimeKind.Utc),
                     IsActive = true,
-                    Role = "Músico"
+                    RoleId = 2
 
                 },
                 new Profile
@@ -153,7 +184,7 @@ namespace Infraestructure.Data
                     BirthDate = new DateOnly(1992, 08, 15),
                     CreatedAt = new DateTime(2025, 04, 07, 12, 0, 0, DateTimeKind.Utc),
                     IsActive = true,
-                    Role = "Músico"
+                    RoleId = 2
                 },
                 new Profile
                 {
@@ -164,7 +195,7 @@ namespace Infraestructure.Data
                     BirthDate = new DateOnly(1985, 11, 10),
                     CreatedAt = new DateTime(2025, 04, 07, 12, 0, 0, DateTimeKind.Utc),
                     IsActive = true,
-                    Role = "Músico"
+                    RoleId = 1
                 }
             );
 

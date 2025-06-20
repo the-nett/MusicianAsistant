@@ -39,7 +39,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Profile, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Aplication.DTO.Profile.AdminProfileViewDto, Aplication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -97,6 +97,26 @@
   },
   {
     "ContainingType": "WebAppMusicianasistant.Controllers.ProfilesController",
+    "Method": "GetPendingProfiles",
+    "RelativePath": "api/Profiles/pending",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Aplication.DTO.Profile.AdminProfileViewDto, Aplication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebAppMusicianasistant.Controllers.ProfilesController",
     "Method": "VerifyUser",
     "RelativePath": "api/Profiles/verify-user",
     "HttpMethod": "GET",
@@ -123,26 +143,5 @@
         "StatusCode": 401
       }
     ]
-  },
-  {
-    "ContainingType": "WebAppMusicianasistant.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebAppMusicianasistant.WeatherForecast, WebApiMusicianasistant, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
   }
 ]

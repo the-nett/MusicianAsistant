@@ -33,7 +33,7 @@ builder.Services.AddScoped<IGenderRepository, GenderRepository>();
 builder.Services.AddScoped<IGenderService, GenderService>();
 
 
-// Configuración de CORS (opcional para desarrollo)
+// Configuración de CORS (opcional para desarrollo) se debe restringir en producción
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>

@@ -16,7 +16,10 @@ namespace Infraestructure.Repositories
 
         public async Task<IEnumerable<Profile>> GetAllProfiles()
         {
-            return await _context.Profiles.ToListAsync();
+            return await _context.Profiles
+                .Include(p => p.Role)
+                .Include(p => p.gender)
+                .ToListAsync();
         }
         public async Task<Profile> VerifyUser(string userUid)
         {
@@ -26,6 +29,14 @@ namespace Infraestructure.Repositories
         {
             _context.Profiles.Add(profile);
             await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<Profile>> GetPendingProfilesAsync()
+        {
+            return await _context.Profiles
+                .Where(p => !p.IsActive)
+                .Include(p => p.Role)
+                .Include(p => p.gender)
+                .ToListAsync();
         }
     }
 }

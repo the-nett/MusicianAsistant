@@ -1,10 +1,9 @@
-﻿using Aplication.Services.Interface;
+﻿using Aplication.DTO.Profile;
+using Aplication.Services.Interface;
 using Application.DTO.Profile;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Security.Claims;
 
 namespace WebAppMusicianasistant.Controllers
@@ -22,8 +21,8 @@ namespace WebAppMusicianasistant.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Profile>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Profile>>> GetAllProfiles()
+        [ProducesResponseType(typeof(IEnumerable<AdminProfileViewDto>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<AdminProfileViewDto>>> GetAllProfiles()
         {
             var profiles = await _profileService.GetAllProfiles();
             return Ok(profiles);
@@ -72,6 +71,8 @@ namespace WebAppMusicianasistant.Controllers
         }
 
         [HttpPost]
+        //---Eliminar en producción AlowAnonymous---//
+        //[AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -81,11 +82,11 @@ namespace WebAppMusicianasistant.Controllers
 
             // Obtener el UID desde el claim nameidentifier
             string? uid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(uid))
-            {
-                return Unauthorized("No se pudo obtener el UID del token.");
-            }
+            //---descomenatar en producción---//
+            //if (string.isnullorempty(uid))
+            //{
+            //    return unauthorized("no se pudo obtener el uid del token.");
+            //}
             try
             {
                 if (!ModelState.IsValid)
@@ -94,7 +95,7 @@ namespace WebAppMusicianasistant.Controllers
                     return BadRequest(ModelState);
                 }
 
-                await _profileService.AddProfile(dto, uid); // <-- delegás el DTO directamente
+                await _profileService.AddProfile(dto, "uid"); // <-- delegás el DTO directamente, en producción "uid" sin comillas
                 return StatusCode(StatusCodes.Status201Created);
             }
             catch (Exception ex)
@@ -102,6 +103,15 @@ namespace WebAppMusicianasistant.Controllers
                 _logger.LogError(ex, "Error while creating person.");
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal error occurred while creating person." });
             }
+        }
+
+        [HttpGet("pending")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(IEnumerable<AdminProfileViewDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPendingProfiles()
+        {
+            var pendingUsers = await _profileService.GetPendingProfilesAsync();
+            return Ok(pendingUsers);
         }
     }
 }

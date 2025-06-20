@@ -1,4 +1,5 @@
-﻿using Aplication.Services.Interface;
+﻿using Aplication.DTO.Profile;
+using Aplication.Services.Interface;
 using Application.DTO.Profile;
 using AutoMapper;
 using Domain.Entities;
@@ -16,9 +17,10 @@ namespace Aplication.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Domain.Entities.Profile>> GetAllProfiles()
+        public async Task<IEnumerable<AdminProfileViewDto>> GetAllProfiles()
         {
-            return await _profileRepository.GetAllProfiles();
+            var profiles = await _profileRepository.GetAllProfiles();
+            return _mapper.Map<IEnumerable<AdminProfileViewDto>>(profiles);
         }
         public async Task<Domain.Entities.Profile> VerifyUser(string userUid)
         {
@@ -30,6 +32,11 @@ namespace Aplication.Services.Implementation
             profile.UserUniqueId = uid;
             await _profileRepository.AddProfile(profile);
 
+        }
+        public async Task<IEnumerable<AdminProfileViewDto>> GetPendingProfilesAsync()
+        {
+            var profiles = await _profileRepository.GetPendingProfilesAsync();
+            return _mapper.Map<IEnumerable<AdminProfileViewDto>>(profiles);
         }
     }
 }

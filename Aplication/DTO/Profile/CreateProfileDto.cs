@@ -4,9 +4,6 @@ namespace Application.DTO.Profile
 {
     public class CreateProfileDto
     {
-        [Required]
-
-        public Guid? StatusInvitationId { get; set; }
 
         [Required]
         public string FullName { get; set; } = null!;
@@ -16,5 +13,7 @@ namespace Application.DTO.Profile
 
         [Required]
         public DateOnly BirthDate { get; set; }
+        [Required]
+        public int RoleId { get; set; }
     }
 }

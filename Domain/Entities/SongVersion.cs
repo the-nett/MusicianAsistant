@@ -25,8 +25,10 @@ namespace Domain.Entities
         public Profile Creator { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public SongVersionPdf SongVersionn { get; set; } = null!;
-        public SongVersionInstrumentPdf SongVersionInstrumentPdf { get; set; } = null!;
+        public ICollection<SongVersionInstrumentPdf> SongVersionInstrumentPdfs { get; set; } = null!;
         public ICollection<SongVersionInstrumentVideo> SongVersionInstrumentVideos { get; set; } = new List<SongVersionInstrumentVideo>();
+        public ICollection<SongVersionInstrumentText> SongVersionInstrumentTexts { get; set; } = new List<SongVersionInstrumentText>();
+
 
     }
 

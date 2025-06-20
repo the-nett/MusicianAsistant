@@ -205,9 +205,8 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserUniqueId")
                         .IsRequired()
@@ -217,6 +216,8 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("GenderId");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Profiles");
 
                     b.HasData(
@@ -225,10 +226,10 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             BirthDate = new DateTime(1990, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedAt = new DateTime(2025, 4, 7, 12, 0, 0, 0, DateTimeKind.Utc),
-                            FullName = "Juan Pérez",
+                            FullName = "Ricardo Rodriguez",
                             GenderId = 1,
                             IsActive = true,
-                            Role = "Músico",
+                            RoleId = 2,
                             UserUniqueId = "user-unique-001"
                         },
                         new
@@ -239,7 +240,7 @@ namespace Infrastructure.Migrations
                             FullName = "María López",
                             GenderId = 2,
                             IsActive = true,
-                            Role = "Músico",
+                            RoleId = 2,
                             UserUniqueId = "user-unique-002"
                         },
                         new
@@ -250,8 +251,37 @@ namespace Infrastructure.Migrations
                             FullName = "Carlos Martínez",
                             GenderId = 1,
                             IsActive = true,
-                            Role = "Músico",
+                            RoleId = 1,
                             UserUniqueId = "user-unique-003"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            RoleName = "Músico"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            RoleName = "Administrador"
                         });
                 });
 
@@ -372,15 +402,51 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("PdfId");
 
-                    b.HasIndex("InstrumentId")
-                        .IsUnique();
+                    b.HasIndex("InstrumentId");
 
                     b.HasIndex("UploadedBy");
 
-                    b.HasIndex("VersionId")
-                        .IsUnique();
+                    b.HasIndex("VersionId");
 
                     b.ToTable("SongVersionInstrumentPdfs");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SongVersionInstrumentText", b =>
+                {
+                    b.Property<int>("TextId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TextId"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InstrumentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UploadedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VersionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TextId");
+
+                    b.HasIndex("InstrumentId");
+
+                    b.HasIndex("UploadedBy");
+
+                    b.HasIndex("VersionId");
+
+                    b.ToTable("SongVersionInstrumentTexts");
                 });
 
             modelBuilder.Entity("Domain.Entities.SongVersionInstrumentVideo", b =>
@@ -419,8 +485,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("VideoId");
 
-                    b.HasIndex("InstrumentId")
-                        .IsUnique();
+                    b.HasIndex("InstrumentId");
 
                     b.HasIndex("UploadedBy");
 
@@ -504,6 +569,14 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Role", "Role")
+                        .WithMany("Profiles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
                     b.Navigation("gender");
                 });
 
@@ -540,9 +613,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.SongVersionInstrumentPdf", b =>
                 {
                     b.HasOne("Domain.Entities.Instrument", "Instrument")
-                        .WithOne("SongVersionInstrumentPdf")
-                        .HasForeignKey("Domain.Entities.SongVersionInstrumentPdf", "InstrumentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany("SongVersionInstrumentPdfs")
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Profile", "Uploader")
@@ -552,8 +625,35 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.SongVersion", "Version")
-                        .WithOne("SongVersionInstrumentPdf")
-                        .HasForeignKey("Domain.Entities.SongVersionInstrumentPdf", "VersionId")
+                        .WithMany("SongVersionInstrumentPdfs")
+                        .HasForeignKey("VersionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instrument");
+
+                    b.Navigation("Uploader");
+
+                    b.Navigation("Version");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SongVersionInstrumentText", b =>
+                {
+                    b.HasOne("Domain.Entities.Instrument", "Instrument")
+                        .WithMany("SongVersionInstrumentTexts")
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Profile", "Uploader")
+                        .WithMany("SongVersionInstrumentTexts")
+                        .HasForeignKey("UploadedBy")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.SongVersion", "Version")
+                        .WithMany("SongVersionInstrumentTexts")
+                        .HasForeignKey("VersionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -567,9 +667,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.SongVersionInstrumentVideo", b =>
                 {
                     b.HasOne("Domain.Entities.Instrument", "Instrument")
-                        .WithOne("SongVersionInstrumentVideos")
-                        .HasForeignKey("Domain.Entities.SongVersionInstrumentVideo", "InstrumentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany("SongVersionInstrumentVideos")
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Profile", "Uploader")
@@ -636,11 +736,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Instrument", b =>
                 {
-                    b.Navigation("SongVersionInstrumentPdf")
-                        .IsRequired();
+                    b.Navigation("SongVersionInstrumentPdfs");
 
-                    b.Navigation("SongVersionInstrumentVideos")
-                        .IsRequired();
+                    b.Navigation("SongVersionInstrumentTexts");
+
+                    b.Navigation("SongVersionInstrumentVideos");
 
                     b.Navigation("UserInstruments");
                 });
@@ -648,6 +748,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Profile", b =>
                 {
                     b.Navigation("SongVersionInstrumentPdfs");
+
+                    b.Navigation("SongVersionInstrumentTexts");
 
                     b.Navigation("SongVersionInstrumentVideos");
 
@@ -660,6 +762,11 @@ namespace Infrastructure.Migrations
                     b.Navigation("UserInstruments");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Role", b =>
+                {
+                    b.Navigation("Profiles");
+                });
+
             modelBuilder.Entity("Domain.Entities.Song", b =>
                 {
                     b.Navigation("Versions");
@@ -667,8 +774,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.SongVersion", b =>
                 {
-                    b.Navigation("SongVersionInstrumentPdf")
-                        .IsRequired();
+                    b.Navigation("SongVersionInstrumentPdfs");
+
+                    b.Navigation("SongVersionInstrumentTexts");
 
                     b.Navigation("SongVersionInstrumentVideos");
 
