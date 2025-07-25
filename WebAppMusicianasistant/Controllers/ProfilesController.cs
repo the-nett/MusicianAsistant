@@ -48,7 +48,7 @@ namespace WebAppMusicianasistant.Controllers
                 return Ok(new { exists = false, fullName = (string?)null });
             }
 
-            return Ok(new { exists = true, UserIsInDb.FullName});
+            return Ok(new { exists = true, UserIsInDb.FullName });
         }
 
         //----------------------------------------------------------------------
@@ -72,7 +72,7 @@ namespace WebAppMusicianasistant.Controllers
 
         [HttpPost]
         //---Eliminar en producción AlowAnonymous---//
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -113,5 +113,68 @@ namespace WebAppMusicianasistant.Controllers
             var pendingUsers = await _profileService.GetPendingProfilesAsync();
             return Ok(pendingUsers);
         }
+
+        [HttpPut("EditProfile")] // PUT para reemplazar un recurso completo con los datos proporcionados
+        // [AllowAnonymous] // Considera restringir esto en producción a roles autorizados (ej. administradores)
+        [ProducesResponseType(StatusCodes.Status200OK)] // Actualización exitosa
+        [ProducesResponseType(StatusCodes.Status400BadRequest)] // Datos inválidos
+        [ProducesResponseType(StatusCodes.Status404NotFound)] // Perfil no encontrado
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)] // Error inesperado del servidor
+        public async Task<IActionResult> EditProfile([FromBody] AdminEditProfileDto dto)
+        {
+            // 1. Validación inicial del DTO (ModelState si tienes DataAnnotations)
+            if (dto == null || dto.Id <= 0)
+            {
+                _logger.LogWarning($"EditProfile: Invalid profile data received. DTO is null or ID is invalid: {dto?.Id}");
+                return BadRequest("Invalid profile data. Profile ID must be positive.");
+            }
+
+            // Si tienes validaciones más complejas en el DTO (ej. [Required], [StringLength])
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarning("EditProfile: Model state is invalid.");
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                // 2. Llamada al servicio para actualizar el perfil
+                await _profileService.EditProfile(dto);
+
+                _logger.LogInformation($"Profile with ID {dto.Id} has been successfully updated.");
+                return Ok(new { message = "Profile updated successfully." });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                // 3. Manejo de perfil no encontrado
+                _logger.LogWarning(ex, $"EditProfile: Profile with ID {dto.Id} not found for update.");
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // 4. Manejo de cualquier otro error inesperado
+                _logger.LogError(ex, $"EditProfile: An unexpected error occurred while updating profile with ID {dto.Id}.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal server error occurred while updating the profile." });
+            }
+        }
+        [HttpGet("GetProfileById")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(Profile), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetProfileById(int profileId)
+        {
+            if (profileId <= 0)
+            {
+                return BadRequest("Invalid profile ID.");
+            }
+
+            var foundProfile = await _profileService.GetProfileByIdAsync(profileId);
+            if (foundProfile == null)
+            {
+                return NotFound($"Profile with ID {profileId} not found.");
+            }
+            return Ok(foundProfile);
+        }
+
     }
 }

@@ -38,5 +38,22 @@ namespace Infraestructure.Repositories
                 .Include(p => p.gender)
                 .ToListAsync();
         }
+        public async Task<Profile?> GetProfileById(int profileId)
+        {
+            return await _context.Profiles
+                                 .Include(p => p.Role)   // Carga la entidad Role
+                                 .Include(p => p.gender) // Carga la entidad Gender
+                                 .FirstOrDefaultAsync(p => p.Id == profileId);
+        }
+        public async Task UpdateProfile(Profile profile)
+        {
+            if (profile == null)
+            {
+                throw new ArgumentNullException(nameof(profile), "Profile cannot be null for update.");
+            }
+
+            _context.Profiles.Update(profile); 
+            await _context.SaveChangesAsync();
+        }
     }
 }

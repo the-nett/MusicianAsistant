@@ -29,6 +29,7 @@ namespace Domain.Entities
         public virtual ICollection<SongVersionInstrumentVideo> SongVersionInstrumentVideos { get; set; } = new List<SongVersionInstrumentVideo>();
         public ICollection<SongVersionInstrumentText> SongVersionInstrumentTexts { get; set; } = new List<SongVersionInstrumentText>();
         public Role Role { get; set; } = null!;
+        public ICollection<SongVersionAudio> SongVersionAudios { get; set; } = new List<SongVersionAudio>();
 
     }
 }

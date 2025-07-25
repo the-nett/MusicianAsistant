@@ -28,8 +28,7 @@ namespace Domain.Entities
         public ICollection<SongVersionInstrumentPdf> SongVersionInstrumentPdfs { get; set; } = null!;
         public ICollection<SongVersionInstrumentVideo> SongVersionInstrumentVideos { get; set; } = new List<SongVersionInstrumentVideo>();
         public ICollection<SongVersionInstrumentText> SongVersionInstrumentTexts { get; set; } = new List<SongVersionInstrumentText>();
-
-
+        public ICollection<SongVersionAudio> SongVersionAudios { get; set; } = new List<SongVersionAudio>();
     }
 
 }

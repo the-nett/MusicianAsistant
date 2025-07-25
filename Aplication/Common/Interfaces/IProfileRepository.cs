@@ -6,4 +6,6 @@ public interface IProfileRepository
     Task<Profile> VerifyUser(string userUid);
     Task AddProfile(Profile profile);
     Task<IEnumerable<Profile>> GetPendingProfilesAsync();
+    Task<Profile?> GetProfileById(int profileId);
+    Task UpdateProfile(Profile profile);
 }

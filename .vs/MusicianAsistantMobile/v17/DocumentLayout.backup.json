@@ -3,44 +3,68 @@
   "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\mappings\\profilemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\mappings\\profilemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\domain\\entities\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\services\\implementation\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\implementation\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79028B12-ADB1-4C74-856A-B6286E1444EE}|WebAppMusicianasistant\\WebApiMusicianasistant.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\webappmusicianasistant\\controllers\\profilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79028B12-ADB1-4C74-856A-B6286E1444EE}|WebAppMusicianasistant\\WebApiMusicianasistant.csproj|solutionrelative:webappmusicianasistant\\controllers\\profilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\common\\interfaces\\iprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\common\\interfaces\\iprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31E6DEC0-E0D5-47C7-B1E4-D1897436903E}|Infraestructure\\Infrastructure.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\infraestructure\\repositories\\profilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31E6DEC0-E0D5-47C7-B1E4-D1897436903E}|Infraestructure\\Infrastructure.csproj|solutionrelative:infraestructure\\repositories\\profilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\services\\interface\\iprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\interface\\iprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\mappings\\profilemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\mappings\\profilemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{31E6DEC0-E0D5-47C7-B1E4-D1897436903E}|Infraestructure\\Infrastructure.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\infraestructure\\repositories\\profilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31E6DEC0-E0D5-47C7-B1E4-D1897436903E}|Infraestructure\\Infrastructure.csproj|solutionrelative:infraestructure\\repositories\\profilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\domain\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{79028B12-ADB1-4C74-856A-B6286E1444EE}|WebAppMusicianasistant\\WebApiMusicianasistant.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\webappmusicianasistant\\controllers\\profilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79028B12-ADB1-4C74-856A-B6286E1444EE}|WebAppMusicianasistant\\WebApiMusicianasistant.csproj|solutionrelative:webappmusicianasistant\\controllers\\profilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\dto\\profile\\createprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dto\\profile\\createprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\dto\\profile\\admineditprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dto\\profile\\admineditprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\common\\interfaces\\iprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\common\\interfaces\\iprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31E6DEC0-E0D5-47C7-B1E4-D1897436903E}|Infraestructure\\Infrastructure.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\infraestructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31E6DEC0-E0D5-47C7-B1E4-D1897436903E}|Infraestructure\\Infrastructure.csproj|solutionrelative:infraestructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\domain\\entities\\instrument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\instrument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\aplication\\dto\\profile\\createprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{687EFD32-F92B-4A3C-8BF8-68BC60FCED53}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dto\\profile\\createprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Migrations\\20250725050504_UploadAudios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infraestructure\\Migrations\\20250725050504_UploadAudios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\domain\\entities\\songversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\songversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79028B12-ADB1-4C74-856A-B6286E1444EE}|WebAppMusicianasistant\\WebApiMusicianasistant.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\webappmusicianasistant\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79028B12-ADB1-4C74-856A-B6286E1444EE}|WebAppMusicianasistant\\WebApiMusicianasistant.csproj|solutionrelative:webappmusicianasistant\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\domain\\entities\\songversioninstrumentpdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\songversioninstrumentpdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\domain\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F686375F-9856-4CB4-965A-B5E07ADA6B6A}|Domain\\Domain.csproj|c:\\users\\user\\source\\repos\\musicianasistant\\domain\\entities\\songversioninstrumenttext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,8 +78,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminEditProfileDto.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\DTO\\Profile\\AdminEditProfileDto.cs",
+              "RelativeDocumentMoniker": "Aplication\\DTO\\Profile\\AdminEditProfileDto.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\DTO\\Profile\\AdminEditProfileDto.cs",
+              "RelativeToolTip": "Aplication\\DTO\\Profile\\AdminEditProfileDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T05:25:54.866Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -70,85 +108,124 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IProfileService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Interface\\IProfileService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\Interface\\IProfileService.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Interface\\IProfileService.cs",
-              "RelativeToolTip": "Aplication\\Services\\Interface\\IProfileService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T04:17:54.571Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProfileService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Implementation\\ProfileService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\Implementation\\ProfileService.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Implementation\\ProfileService.cs",
-              "RelativeToolTip": "Aplication\\Services\\Implementation\\ProfileService.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCUAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T04:13:03.771Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ProfileMappingProfile.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Mappings\\ProfileMappingProfile.cs",
-              "RelativeDocumentMoniker": "Aplication\\Mappings\\ProfileMappingProfile.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Mappings\\ProfileMappingProfile.cs",
-              "RelativeToolTip": "Aplication\\Mappings\\ProfileMappingProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T04:11:39.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "ProfilesController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\WebAppMusicianasistant\\Controllers\\ProfilesController.cs",
               "RelativeDocumentMoniker": "WebAppMusicianasistant\\Controllers\\ProfilesController.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\WebAppMusicianasistant\\Controllers\\ProfilesController.cs",
-              "RelativeToolTip": "WebAppMusicianasistant\\Controllers\\ProfilesController.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAQwHAAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\WebAppMusicianasistant\\Controllers\\ProfilesController.cs*",
+              "RelativeToolTip": "WebAppMusicianasistant\\Controllers\\ProfilesController.cs*",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAYwJ4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T02:57:08.422Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProfileRepository.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Repositories\\ProfileRepository.cs",
-              "RelativeDocumentMoniker": "Infraestructure\\Repositories\\ProfileRepository.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Repositories\\ProfileRepository.cs",
-              "RelativeToolTip": "Infraestructure\\Repositories\\ProfileRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA3AAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "Instrument.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\Instrument.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Instrument.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\Instrument.cs",
+              "RelativeToolTip": "Domain\\Entities\\Instrument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T04:24:09.957Z",
+              "WhenOpened": "2025-06-19T11:35:01.809Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\WebAppMusicianasistant\\Program.cs",
+              "RelativeDocumentMoniker": "WebAppMusicianasistant\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\WebAppMusicianasistant\\Program.cs",
+              "RelativeToolTip": "WebAppMusicianasistant\\Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T04:59:12.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProfileMappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Mappings\\ProfileMappingProfile.cs",
+              "RelativeDocumentMoniker": "Aplication\\Mappings\\ProfileMappingProfile.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Mappings\\ProfileMappingProfile.cs",
+              "RelativeToolTip": "Aplication\\Mappings\\ProfileMappingProfile.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAACVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T04:11:39.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "IProfileRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Common\\Interfaces\\IProfileRepository.cs",
               "RelativeDocumentMoniker": "Aplication\\Common\\Interfaces\\IProfileRepository.cs",
               "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Common\\Interfaces\\IProfileRepository.cs",
               "RelativeToolTip": "Aplication\\Common\\Interfaces\\IProfileRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T02:51:27.462Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
+              "Title": "ProfileRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Repositories\\ProfileRepository.cs",
+              "RelativeDocumentMoniker": "Infraestructure\\Repositories\\ProfileRepository.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Repositories\\ProfileRepository.cs",
+              "RelativeToolTip": "Infraestructure\\Repositories\\ProfileRepository.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwDYAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T04:24:09.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IProfileService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Interface\\IProfileService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\Interface\\IProfileService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Interface\\IProfileService.cs",
+              "RelativeToolTip": "Aplication\\Services\\Interface\\IProfileService.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAwAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T04:17:54.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProfileService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Implementation\\ProfileService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\Implementation\\ProfileService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\Services\\Implementation\\ProfileService.cs",
+              "RelativeToolTip": "Aplication\\Services\\Implementation\\ProfileService.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAswEkAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T04:13:03.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Profile.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\Profile.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Profile.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\Profile.cs",
+              "RelativeToolTip": "Domain\\Entities\\Profile.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAIwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T05:03:11.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "CreateProfileDto.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Aplication\\DTO\\Profile\\CreateProfileDto.cs",
               "RelativeDocumentMoniker": "Aplication\\DTO\\Profile\\CreateProfileDto.cs",
@@ -161,7 +238,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
+              "Title": "SongVersionInstrumentPdf.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\SongVersionInstrumentPdf.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\SongVersionInstrumentPdf.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\SongVersionInstrumentPdf.cs",
+              "RelativeToolTip": "Domain\\Entities\\SongVersionInstrumentPdf.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T04:56:54.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Infraestructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Infraestructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAMUAAAAAAAAAAADgv9YAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T04:57:40.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "20250725050504_UploadAudios.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Migrations\\20250725050504_UploadAudios.cs",
+              "RelativeDocumentMoniker": "Infraestructure\\Migrations\\20250725050504_UploadAudios.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Infraestructure\\Migrations\\20250725050504_UploadAudios.cs",
+              "RelativeToolTip": "Infraestructure\\Migrations\\20250725050504_UploadAudios.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-25T05:05:05.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SongVersion.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\SongVersion.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\SongVersion.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\SongVersion.cs",
+              "RelativeToolTip": "Domain\\Entities\\SongVersion.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAywB4AAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T11:36:06.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Role.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\Role.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\Role.cs",
@@ -169,12 +298,11 @@
               "RelativeToolTip": "Domain\\Entities\\Role.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T03:22:44.533Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-20T03:22:44.533Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "SongVersionInstrumentText.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\SongVersionInstrumentText.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\SongVersionInstrumentText.cs",
@@ -182,34 +310,7 @@
               "RelativeToolTip": "Domain\\Entities\\SongVersionInstrumentText.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAwBUAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T11:47:18.873Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SongVersion.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\SongVersion.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\SongVersion.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\SongVersion.cs",
-              "RelativeToolTip": "Domain\\Entities\\SongVersion.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAIwB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T11:36:06.232Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Instrument.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\Instrument.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Instrument.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\MusicianAsistant\\Domain\\Entities\\Instrument.cs",
-              "RelativeToolTip": "Domain\\Entities\\Instrument.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T11:35:01.809Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T11:47:18.873Z"
             }
           ]
         }

@@ -22,6 +22,8 @@ namespace Infraestructure.Data
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<SongVersionInstrumentText> SongVersionInstrumentTexts { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<SongVersionAudio> SongVersionAudios { get; set; }
+
 
 
         public DbSet<ErrorLogs> ErrorLogs { get; set; }
@@ -140,7 +142,18 @@ namespace Infraestructure.Data
                 .WithMany(p => p.SongVersionInstrumentTexts)
                 .HasForeignKey(t => t.UploadedBy)
                 .OnDelete(DeleteBehavior.Restrict);
+            //------------------------------------------------
+            modelBuilder.Entity<SongVersionAudio>()
+                .HasOne(a => a.Version)
+                .WithMany(v => v.SongVersionAudios)
+                .HasForeignKey(a => a.VersionId)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<SongVersionAudio>()
+                .HasOne(a => a.Uploader)
+                .WithMany(p => p.SongVersionAudios)
+                .HasForeignKey(a => a.UploadedBy)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // ---------- Seed Data ----------
             //Instruments

@@ -10,5 +10,8 @@ namespace Aplication.Services.Interface
         Task <Profile> VerifyUser(string uid);
         Task AddProfile(CreateProfileDto dto, string uid);
         Task<IEnumerable<AdminProfileViewDto>> GetPendingProfilesAsync();
+        Task EditProfile(AdminEditProfileDto editProfileDto);
+        Task<AdminProfileViewDto?> GetProfileByIdAsync(int profileId);
+
     }
 }
