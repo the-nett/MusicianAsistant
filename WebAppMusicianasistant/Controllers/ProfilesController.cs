@@ -175,6 +175,65 @@ namespace WebAppMusicianasistant.Controllers
             }
             return Ok(foundProfile);
         }
+        // COntrollers for users
+        [HttpPut("EditUserProfile")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)] // Success
+        [ProducesResponseType(StatusCodes.Status400BadRequest)] // Invalid data
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)] // Not authenticated
+        [ProducesResponseType(StatusCodes.Status404NotFound)] // Profile not found (though less likely if user is authenticated)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)] // Unexpected error
+        public async Task<IActionResult> EditMyProfile([FromBody] UserEditProfileDto dto, int userUniqueId) // se debe remober el userUniqueId de los parámetros en producción
+        {
+            // 1. Get the UserUniqueId from the authenticated user's claims
+            //int userUniqueId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            //---------- se pone considera en proccion
+            //if (userUniqueId == null)
+            //{
+            //    // This should ideally not happen if [Authorize] is used correctly,
+            //    // but it's a good safeguard.
+            //    _logger.LogWarning("EditMyProfile: Unauthorized attempt to access profile without UserUniqueId claim.");
+            //    return Unauthorized("User unique ID not found in token. Please ensure you are authenticated.");
+            //}
 
+            // 2. Validate the incoming DTO
+            if (dto == null)
+            {
+                _logger.LogWarning($"EditMyProfile: Received null DTO for user userUniqueId."); //{ userUniqueId}
+                return BadRequest("Profile data cannot be null.");
+            }
+
+            if (!ModelState.IsValid) // For DataAnnotations validation in UserEditProfileDto
+            {
+                _logger.LogWarning($"EditMyProfile: Invalid model state for user userUniqueId."); //{ userUniqueId}
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                // 3. Call the service to update the profile
+                // The DTO's ID is ignored by the service; the userUniqueId from the token is authoritative.
+                await _profileService.EditUserProfile(userUniqueId, dto);
+
+                _logger.LogInformation($"EditMyProfile: Profile for user {userUniqueId} updated successfully.");
+                return Ok(new { message = "Your profile has been updated successfully." });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                _logger.LogWarning(ex, $"EditMyProfile: Profile not found for user {userUniqueId}.");
+                return NotFound(new { message = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Catches the DTO ID mismatch or other invalid operations from the service
+                _logger.LogWarning(ex, $"EditMyProfile: Invalid operation for user {userUniqueId}.");
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"EditMyProfile: An unexpected error occurred while updating profile for user {userUniqueId}.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal server error occurred while updating your profile." });
+            }
+        }
     }
 }

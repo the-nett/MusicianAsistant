@@ -78,5 +78,33 @@ namespace Aplication.Services.Implementation
 
             await _profileRepository.UpdateProfile(existingProfile);
         }
+
+        public async Task EditUserProfile(int userUniqueId, UserEditProfileDto userEditProfileDto)
+        {
+
+            var existingProfile = await _profileRepository.GetProfileById(userUniqueId);
+
+            if (existingProfile == null)
+            {
+                throw new KeyNotFoundException($"Profile not found for user with Unique ID: {userUniqueId}.");
+            }
+
+            // Optional: If the DTO includes an ID, you might want to validate it matches the found profile's ID.
+            // This adds an extra layer of security to prevent a user from trying to update another user's profile
+            // by manipulating the DTO's Id field.
+            if (userEditProfileDto.Id != 0 && userEditProfileDto.Id != existingProfile.Id)
+            {
+                throw new InvalidOperationException("Profile ID in DTO does not match authenticated user's profile ID.");
+            }
+
+
+            // 3. Map changes from DTO to the existing entity
+            // AutoMapper will update the properties of 'existingProfile'
+            // based on the 'UserEditProfileDto' and the defined mapping rules.
+            _mapper.Map(userEditProfileDto, existingProfile);
+
+            // 4. Save changes via the repository
+            await _profileRepository.UpdateProfile(existingProfile); // Reusing the UpdateProfile method
+        }
     }
 }

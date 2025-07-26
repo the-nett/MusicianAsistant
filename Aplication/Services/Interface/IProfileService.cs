@@ -12,6 +12,7 @@ namespace Aplication.Services.Interface
         Task<IEnumerable<AdminProfileViewDto>> GetPendingProfilesAsync();
         Task EditProfile(AdminEditProfileDto editProfileDto);
         Task<AdminProfileViewDto?> GetProfileByIdAsync(int profileId);
+        Task EditUserProfile(int userUniqueId, UserEditProfileDto userEditProfileDto);
 
     }
 }
