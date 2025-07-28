@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("mauiapp4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+e6c9197f796ba753aa7922cb6f0791e2236e771d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d523f7c7a303712c6496fc326bf9f5e0cf5dc4ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("mauiapp4")]
 [assembly: System.Reflection.AssemblyTitleAttribute("mauiapp4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,3 +1,10 @@
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.AssemblyInfo.cs
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.sourcelink.json
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\bin\Debug\net8.0\appsettings.json
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\bin\Debug\net8.0\WebApiMusicianasistant.staticwebassets.endpoints.json
@@ -155,14 +162,6 @@ C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\bin\Debug\net
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\bin\Debug\net8.0\Infrastructure.pdb
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\bin\Debug\net8.0\Aplication.pdb
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\bin\Debug\net8.0\Domain.pdb
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.AssemblyInfoInputs.cache
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.AssemblyInfo.cs
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.sourcelink.json
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\scopedcss\bundle\WebApiMusicianasistant.styles.css
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\staticwebassets.development.json

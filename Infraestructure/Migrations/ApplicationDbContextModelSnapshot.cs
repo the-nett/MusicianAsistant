@@ -87,21 +87,26 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("context_info")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("context_info");
 
                     b.Property<DateTime>("created_at")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("created_at");
 
                     b.Property<int>("id_user")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id_user");
 
                     b.Property<string>("message")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("message");
 
                     b.Property<string>("stack_trace")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("stack_trace");
 
                     b.HasKey("IdError");
 
@@ -583,7 +588,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("InstrumentId");
 
-                    b.ToTable("UserInstrument");
+                    b.ToTable("UserInstruments");
                 });
 
             modelBuilder.Entity("Domain.Entities.AuditLog", b =>
@@ -591,7 +596,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.ActionType", "ActionType")
                         .WithMany()
                         .HasForeignKey("ActionTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ActionType");
@@ -602,7 +607,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Gender", "gender")
                         .WithMany("Profiles")
                         .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Role", "Role")
@@ -621,7 +626,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Profile", "Creator")
                         .WithMany("Songs")
                         .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Creator");
@@ -632,7 +637,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Profile", "Creator")
                         .WithMany("SongVersions")
                         .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Song", "Song")
@@ -669,7 +674,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Instrument", "Instrument")
                         .WithMany("SongVersionInstrumentPdfs")
                         .HasForeignKey("InstrumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Profile", "Uploader")
@@ -681,7 +686,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.SongVersion", "Version")
                         .WithMany("SongVersionInstrumentPdfs")
                         .HasForeignKey("VersionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Instrument");
@@ -723,7 +728,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Instrument", "Instrument")
                         .WithMany("SongVersionInstrumentVideos")
                         .HasForeignKey("InstrumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Profile", "Uploader")
@@ -769,13 +774,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Instrument", "Instrument")
                         .WithMany("UserInstruments")
                         .HasForeignKey("InstrumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Profile", "User")
                         .WithMany("UserInstruments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Instrument");
