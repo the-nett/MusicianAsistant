@@ -1,8 +1,10 @@
+using Aplication.Common.Interfaces;
 using Aplication.Services.Implementation;
 using Aplication.Services.Interface;
 using Application.Mappings;
 using Infraestructure.Data;
 using Infraestructure.Repositories;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -28,8 +30,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Inyección de dependencias
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
-builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<IUserInstrumentRepository, UserInstrumentRepository>();
 builder.Services.AddScoped<IGenderRepository, GenderRepository>();
+
+builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<IUserInstrumentService, UserInstrumentService>();
 builder.Services.AddScoped<IGenderService, GenderService>();
 
 

@@ -1,3 +1,6 @@
+- Revisar controlador Profiles para producción, muchos comentarios
+
+
 🚀 1. Sobre la búsqueda "en vivo" mientras escribes (estilo Google)
 Lo que describes es el famoso "live search" o "autocomplete".
 
