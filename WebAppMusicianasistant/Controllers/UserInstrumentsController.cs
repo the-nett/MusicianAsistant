@@ -1,6 +1,7 @@
 ﻿using Aplication.DTO.UserInstrument;
-using Aplication.Services.Interface;
+using Aplication.Services.Interface; 
 using Microsoft.AspNetCore.Mvc;
+using Aplication.DTO.ErrorLogs; 
 
 namespace WebApiMusicianasistant.Controllers
 {
@@ -9,12 +10,14 @@ namespace WebApiMusicianasistant.Controllers
     public class UserInstrumentsController : ControllerBase
     {
         private readonly IUserInstrumentService _userInstrumentService;
-        private readonly ILogger<UserInstrumentsController> _logger; // Inyectar ILogger
+        private readonly ILogger<UserInstrumentsController> _logger;
+        private readonly IErrorLogService _errorLogService; // ¡Nueva inyección!
 
-        public UserInstrumentsController(IUserInstrumentService userInstrumentService, ILogger<UserInstrumentsController> logger)
+        public UserInstrumentsController(IUserInstrumentService userInstrumentService, ILogger<UserInstrumentsController> logger, IErrorLogService errorLogService) // ¡Parámetro añadido!
         {
             _userInstrumentService = userInstrumentService;
             _logger = logger;
+            _errorLogService = errorLogService; // ¡Asignación!
         }
 
         // POST: api/userinstruments
@@ -31,29 +34,43 @@ namespace WebApiMusicianasistant.Controllers
                 if (!ModelState.IsValid)
                 {
                     _logger.LogWarning("Invalid model state for CreateUserInstrument.");
-                    return BadRequest(ModelState);
+                    return BadRequest(ModelState); // Error de validación: respuesta 400
                 }
 
                 var result = await _userInstrumentService.CreateUserInstrumentAsync(dto);
                 _logger.LogInformation($"UserInstrument created successfully for UserId: {result.UserId}, InstrumentId: {result.InstrumentId}");
-                // Se cambió nameof(GetUserInstrumentById) a la cadena literal "GetUserInstrumentById"
-                return CreatedAtAction("GetUserInstrumentById", new { userId = result.UserId, instrumentId = result.InstrumentId }, result);
+                return StatusCode(StatusCodes.Status201Created, result);
             }
             catch (InvalidOperationException ex)
             {
-                // Captura excepciones de negocio, como duplicados
+                // Captura excepciones de negocio, como duplicados. Esta es una respuesta esperada.
+                // NO se loggea en ErrorLogs.
                 _logger.LogWarning(ex, $"Conflict when creating UserInstrument: {ex.Message}");
                 return Conflict(new { message = ex.Message }); // 409 Conflict
             }
             catch (KeyNotFoundException ex)
             {
-                // Captura si el usuario o instrumento no existen (si implementas esa validación en el servicio)
+                // Captura si el usuario o instrumento no existen. Esta es una respuesta esperada.
+                // NO se loggea en ErrorLogs.
                 _logger.LogWarning(ex, $"Dependency not found for UserInstrument creation: {ex.Message}");
                 return NotFound(new { message = ex.Message }); // 404 Not Found
             }
-            catch (Exception ex)
+            catch (Exception ex) // Este 'catch' captura cualquier excepción inesperada
             {
                 _logger.LogError(ex, "An unexpected error occurred while creating UserInstrument.");
+
+                // --- REGISTRAR EN ERRORLOGS SOLO ERRORES INESPERADOS ---
+                // Se usa dto.UserId para el id_user en ErrorLogs
+                var errorLogDto = new CreateErrorLogDto
+                {
+                    Message = ex.Message,
+                    StackTrace = ex.ToString(),
+                    ContextInfo = $"Controller: {nameof(UserInstrumentsController)}, Action: {nameof(CreateUserInstrument)}, UserId: {dto.UserId}, InstrumentId: {dto.InstrumentId}",
+                    IdUser = dto.UserId // Usar el ID del usuario de la solicitud
+                };
+                await _errorLogService.CreateErrorLogAsync(errorLogDto);
+                // --- FIN REGISTRO ERRORLOGS ---
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal server error occurred while creating the user instrument relationship." });
             }
         }
@@ -74,14 +91,26 @@ namespace WebApiMusicianasistant.Controllers
                 if (result == null || !result.Any())
                 {
                     _logger.LogInformation($"No UserInstruments found for UserId: {userId}");
-                    return NotFound($"No instruments found for user with ID {userId}.");
+                    return NotFound($"No instruments found for user with ID {userId}."); // Perfil no encontrado: respuesta 404
                 }
                 _logger.LogInformation($"Found {result.Count()} UserInstruments for UserId: {userId}");
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch (Exception ex) // Este 'catch' captura cualquier excepción inesperada
             {
                 _logger.LogError(ex, $"An unexpected error occurred while getting UserInstruments for UserId: {userId}.");
+
+                // --- REGISTRAR EN ERRORLOGS SOLO ERRORES INESPERADOS ---
+                var errorLogDto = new CreateErrorLogDto
+                {
+                    Message = ex.Message,
+                    StackTrace = ex.ToString(),
+                    ContextInfo = $"Controller: {nameof(UserInstrumentsController)}, Action: {nameof(GetUserInstrumentsByUserId)}, Target UserId: {userId}",
+                    IdUser = userId // Usar el ID del usuario de la ruta
+                };
+                await _errorLogService.CreateErrorLogAsync(errorLogDto);
+                // --- FIN REGISTRO ERRORLOGS ---
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal server error occurred while retrieving user instrument relationships." });
             }
         }
@@ -103,12 +132,26 @@ namespace WebApiMusicianasistant.Controllers
             }
             catch (KeyNotFoundException ex)
             {
+                // Elemento no encontrado para eliminación: es un error de negocio esperado.
+                // NO se loggea en ErrorLogs.
                 _logger.LogWarning(ex, $"UserInstrument not found for deletion: {ex.Message}");
                 return NotFound(new { message = ex.Message });
             }
-            catch (Exception ex)
+            catch (Exception ex) // Este 'catch' captura cualquier excepción inesperada
             {
                 _logger.LogError(ex, $"An unexpected error occurred while deleting UserInstrument for UserId: {userId}, InstrumentId: {instrumentId}.");
+
+                // --- REGISTRAR EN ERRORLOGS SOLO ERRORES INESPERADOS ---
+                var errorLogDto = new CreateErrorLogDto
+                {
+                    Message = ex.Message,
+                    StackTrace = ex.ToString(),
+                    ContextInfo = $"Controller: {nameof(UserInstrumentsController)}, Action: {nameof(DeleteUserInstrument)}, UserId: {userId}, InstrumentId: {instrumentId}",
+                    IdUser = userId // Usar el ID del usuario de la ruta
+                };
+                await _errorLogService.CreateErrorLogAsync(errorLogDto);
+                // --- FIN REGISTRO ERRORLOGS ---
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal server error occurred while deleting the user instrument relationship." });
             }
         }

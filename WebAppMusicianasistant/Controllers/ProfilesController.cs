@@ -1,10 +1,11 @@
 ﻿using Aplication.DTO.Profile;
-using Aplication.Services.Interface;
+using Aplication.Services.Interface; 
 using Application.DTO.Profile;
-using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Aplication.DTO.ErrorLogs;
+using Domain.Entities;
 
 namespace WebAppMusicianasistant.Controllers
 {
@@ -14,10 +15,13 @@ namespace WebAppMusicianasistant.Controllers
     {
         private readonly IProfileService _profileService;
         private readonly ILogger<ProfilesController> _logger;
-        public ProfilesController(IProfileService profileService, ILogger<ProfilesController> logger)
+        private readonly IErrorLogService _errorLogService; // Inyección del servicio de logs
+
+        public ProfilesController(IProfileService profileService, ILogger<ProfilesController> logger, IErrorLogService errorLogService)
         {
             _profileService = profileService;
             _logger = logger;
+            _errorLogService = errorLogService; // Asignación del servicio de logs
         }
 
         [HttpGet]
@@ -51,7 +55,6 @@ namespace WebAppMusicianasistant.Controllers
             return Ok(new { exists = true, UserIsInDb.FullName });
         }
 
-        //----------------------------------------------------------------------
         [HttpGet("debug-token")]
         [AllowAnonymous] // Para facilitar las pruebas
         public IActionResult DebugToken()
@@ -71,7 +74,7 @@ namespace WebAppMusicianasistant.Controllers
         }
 
         [HttpPost]
-        //---Eliminar en producción AlowAnonymous---//
+        //---Eliminar en producción AllowAnonymous---//
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -82,25 +85,45 @@ namespace WebAppMusicianasistant.Controllers
 
             // Obtener el UID desde el claim nameidentifier
             string? uid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            //---descomenatar en producción---//
-            //if (string.isnullorempty(uid))
+            //---descomentar en producción---//
+            //if (string.IsNullOrEmpty(uid))
             //{
-            //    return unauthorized("no se pudo obtener el uid del token.");
+            //    return Unauthorized("No se pudo obtener el UID del token.");
             //}
+
             try
             {
                 if (!ModelState.IsValid)
                 {
                     _logger.LogWarning("Invalid model state.");
-                    return BadRequest(ModelState);
+                    return BadRequest(ModelState); // Error de validación de modelo: respuesta 400
                 }
 
-                await _profileService.AddProfile(dto, "uid"); // <-- delegás el DTO directamente, en producción "uid" sin comillas
+                await _profileService.AddProfile(dto, "uid"); // <-- Aquí usa el UID real en producción
                 return StatusCode(StatusCodes.Status201Created);
             }
-            catch (Exception ex)
+            catch (Exception ex) // Este 'catch' captura cualquier excepción inesperada
             {
                 _logger.LogError(ex, "Error while creating person.");
+
+                // Intenta obtener el ID de usuario del claim, si no, usa 0
+                int userId = 0;
+                if (int.TryParse(uid, out int parsedUserId)) // Asumiendo que el UID puede ser un int para id_user
+                {
+                    userId = parsedUserId;
+                }
+
+                // --- REGISTRAR EN ERRORLOGS SOLO ERRORES INESPERADOS ---
+                var errorLogDto = new CreateErrorLogDto
+                {
+                    Message = ex.Message,
+                    StackTrace = ex.ToString(),
+                    ContextInfo = $"Controller: {nameof(ProfilesController)}, Action: {nameof(AddProfile)}, User UID: {uid ?? "N/A"}",
+                    IdUser = userId
+                };
+                await _errorLogService.CreateErrorLogAsync(errorLogDto);
+                // --- FIN REGISTRO ERRORLOGS ---
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal error occurred while creating person." });
             }
         }
@@ -126,14 +149,14 @@ namespace WebAppMusicianasistant.Controllers
             if (dto == null || dto.Id <= 0)
             {
                 _logger.LogWarning($"EditProfile: Invalid profile data received. DTO is null or ID is invalid: {dto?.Id}");
-                return BadRequest("Invalid profile data. Profile ID must be positive.");
+                return BadRequest("Invalid profile data. Profile ID must be positive."); // Error de validación: respuesta 400
             }
 
             // Si tienes validaciones más complejas en el DTO (ej. [Required], [StringLength])
             if (!ModelState.IsValid)
             {
                 _logger.LogWarning("EditProfile: Model state is invalid.");
-                return BadRequest(ModelState);
+                return BadRequest(ModelState); // Error de validación: respuesta 400
             }
 
             try
@@ -146,17 +169,37 @@ namespace WebAppMusicianasistant.Controllers
             }
             catch (KeyNotFoundException ex)
             {
-                // 3. Manejo de perfil no encontrado
+                // 3. Manejo de perfil no encontrado: es un error de negocio esperado.
+                // Ya tiene una respuesta específica (404 Not Found), no se loggea en ErrorLogs.
                 _logger.LogWarning(ex, $"EditProfile: Profile with ID {dto.Id} not found for update.");
                 return NotFound(new { message = ex.Message });
             }
-            catch (Exception ex)
+            catch (Exception ex) // Este 'catch' es para cualquier otro error inesperado
             {
-                // 4. Manejo de cualquier otro error inesperado
+                // Intenta obtener el ID de usuario del claim, si no, usa 0
+                int userId = 0;
+                string? uid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (int.TryParse(uid, out int parsedUserId)) // Asumiendo que el UID puede ser un int para id_user
+                {
+                    userId = parsedUserId;
+                }
+
                 _logger.LogError(ex, $"EditProfile: An unexpected error occurred while updating profile with ID {dto.Id}.");
+                // --- REGISTRAR EN ERRORLOGS SOLO ERRORES INESPERADOS ---
+                var errorLogDto = new CreateErrorLogDto
+                {
+                    Message = ex.Message,
+                    StackTrace = ex.ToString(),
+                    ContextInfo = $"Controller: {nameof(ProfilesController)}, Action: {nameof(EditProfile)}, Profile ID: {dto.Id}, User UID: {uid ?? "N/A"}",
+                    IdUser = userId
+                };
+                await _errorLogService.CreateErrorLogAsync(errorLogDto);
+                // --- FIN REGISTRO ERRORLOGS ---
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal server error occurred while updating the profile." });
             }
         }
+
         [HttpGet("GetProfileById")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(Profile), StatusCodes.Status200OK)]
@@ -175,7 +218,8 @@ namespace WebAppMusicianasistant.Controllers
             }
             return Ok(foundProfile);
         }
-        // COntrollers for users
+
+        // Controllers for users
         [HttpPut("EditUserProfile")]
         [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)] // Success
@@ -183,55 +227,80 @@ namespace WebAppMusicianasistant.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)] // Not authenticated
         [ProducesResponseType(StatusCodes.Status404NotFound)] // Profile not found (though less likely if user is authenticated)
         [ProducesResponseType(StatusCodes.Status500InternalServerError)] // Unexpected error
-        public async Task<IActionResult> EditMyProfile([FromBody] UserEditProfileDto dto, int userUniqueId) // se debe remober el userUniqueId de los parámetros en producción
+        public async Task<IActionResult> EditMyProfile([FromBody] UserEditProfileDto dto, int userUniqueId) // userUniqueId se debe remober de los parámetros en producción
         {
-            // 1. Get the UserUniqueId from the authenticated user's claims
-            //int userUniqueId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            //---------- se pone considera en proccion
-            //if (userUniqueId == null)
+            // 1. Obtener el UserUniqueId del token autenticado en producción
+            string? uid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            int currentUserId = 0; // Usaremos esto para id_user en ErrorLogs
+
+            //---Descomentar en producción---//
+            //if (string.IsNullOrEmpty(uid))
             //{
-            //    // This should ideally not happen if [Authorize] is used correctly,
-            //    // but it's a good safeguard.
             //    _logger.LogWarning("EditMyProfile: Unauthorized attempt to access profile without UserUniqueId claim.");
             //    return Unauthorized("User unique ID not found in token. Please ensure you are authenticated.");
             //}
+            //if (!int.TryParse(uid, out currentUserId))
+            //{
+            //    _logger.LogWarning($"EditMyProfile: Could not parse UserUniqueId '{uid}' from claim to int.");
+            //    return Unauthorized("Invalid user unique ID format in token.");
+            //}
+
+            // Para depuración, si no se obtiene del token, se usa el parámetro
+            if (!int.TryParse(uid, out currentUserId))
+            {
+                currentUserId = userUniqueId; // Para cuando userUniqueId viene del parámetro de debug
+            }
+
 
             // 2. Validate the incoming DTO
             if (dto == null)
             {
-                _logger.LogWarning($"EditMyProfile: Received null DTO for user userUniqueId."); //{ userUniqueId}
-                return BadRequest("Profile data cannot be null.");
+                _logger.LogWarning($"EditMyProfile: Received null DTO for user {currentUserId}.");
+                return BadRequest("Profile data cannot be null."); // Error de validación: respuesta 400
             }
 
             if (!ModelState.IsValid) // For DataAnnotations validation in UserEditProfileDto
             {
-                _logger.LogWarning($"EditMyProfile: Invalid model state for user userUniqueId."); //{ userUniqueId}
-                return BadRequest(ModelState);
+                _logger.LogWarning($"EditMyProfile: Invalid model state for user {currentUserId}.");
+                return BadRequest(ModelState); // Error de validación: respuesta 400
             }
 
             try
             {
                 // 3. Call the service to update the profile
-                // The DTO's ID is ignored by the service; the userUniqueId from the token is authoritative.
-                await _profileService.EditUserProfile(userUniqueId, dto);
+                // El ID del DTO es ignorado por el servicio; el UserUniqueId del token es la autoridad.
+                await _profileService.EditUserProfile(currentUserId, dto); // Usar currentUserId aquí
 
-                _logger.LogInformation($"EditMyProfile: Profile for user {userUniqueId} updated successfully.");
+                _logger.LogInformation($"EditMyProfile: Profile for user {currentUserId} updated successfully.");
                 return Ok(new { message = "Your profile has been updated successfully." });
             }
             catch (KeyNotFoundException ex)
             {
-                _logger.LogWarning(ex, $"EditMyProfile: Profile not found for user {userUniqueId}.");
+                // Error de negocio: perfil no encontrado. NO se loggea en ErrorLogs.
+                _logger.LogWarning(ex, $"EditMyProfile: Profile not found for user {currentUserId}.");
                 return NotFound(new { message = ex.Message });
             }
             catch (InvalidOperationException ex)
             {
-                // Catches the DTO ID mismatch or other invalid operations from the service
-                _logger.LogWarning(ex, $"EditMyProfile: Invalid operation for user {userUniqueId}.");
+                // Error de negocio: operación inválida (ej. DTO ID mismatch). NO se loggea en ErrorLogs.
+                _logger.LogWarning(ex, $"EditMyProfile: Invalid operation for user {currentUserId}.");
                 return BadRequest(new { message = ex.Message });
             }
-            catch (Exception ex)
+            catch (Exception ex) // Este 'catch' es para cualquier otro error inesperado
             {
-                _logger.LogError(ex, $"EditMyProfile: An unexpected error occurred while updating profile for user {userUniqueId}.");
+                _logger.LogError(ex, $"EditMyProfile: An unexpected error occurred while updating profile for user {currentUserId}.");
+
+                // --- REGISTRAR EN ERRORLOGS SOLO ERRORES INESPERADOS ---
+                var errorLogDto = new CreateErrorLogDto
+                {
+                    Message = ex.Message,
+                    StackTrace = ex.ToString(),
+                    ContextInfo = $"Controller: {nameof(ProfilesController)}, Action: {nameof(EditMyProfile)}, Target User ID: {currentUserId}, User UID: {uid ?? "N/A"}",
+                    IdUser = currentUserId
+                };
+                await _errorLogService.CreateErrorLogAsync(errorLogDto);
+                // --- FIN REGISTRO ERRORLOGS ---
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An internal server error occurred while updating your profile." });
             }
         }

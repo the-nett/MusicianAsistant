@@ -179,3 +179,4 @@ C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.pdb
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.genruntimeconfig.cache
 C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\ref\WebApiMusicianasistant.dll
+C:\Users\User\source\repos\MusicianAsistant\WebAppMusicianasistant\obj\Debug\net8.0\WebApiMusicianasistant.MvcApplicationPartsAssemblyInfo.cs

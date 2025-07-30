@@ -1,1 +1,1 @@
-Pending create UserIntrument (validation)
+UserInstrument finished also error logs registration
