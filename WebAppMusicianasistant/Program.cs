@@ -33,11 +33,13 @@ builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IUserInstrumentRepository, UserInstrumentRepository>();
 builder.Services.AddScoped<IGenderRepository, GenderRepository>();
 builder.Services.AddScoped<IErrorLogsRepository, ErrorLogsRepository>();
+builder.Services.AddScoped<ISongRepository, SongRepository>();
 
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IUserInstrumentService, UserInstrumentService>();
 builder.Services.AddScoped<IGenderService, GenderService>();
 builder.Services.AddScoped<IErrorLogService, ErrorLogService>();
+builder.Services.AddScoped<ISongService, SongService>();
 
 
 // Configuración de CORS (opcional para desarrollo) se debe restringir en producción
